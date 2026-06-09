@@ -1,0 +1,6 @@
+{
+  "name": "Lakshmanjhula Bike Rental",
+  "description": "Premium bike and scooter rentals, river rafting bookings, outstation/local taxi services, and extreme adventure sports options at Lakshman Jhula in Rishikesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
