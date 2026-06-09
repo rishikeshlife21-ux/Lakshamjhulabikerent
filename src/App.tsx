@@ -156,6 +156,22 @@ const FAQS = [
 export default function App() {
   // Navigation & Menu Status
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Scroll helper function for reliable navigation (especially within browser iframe sandboxes / mobile wrappers)
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 90;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
   
   // Filtering fleet state
   const [selectedCategory, setSelectedCategory] = useState<"all" | "cruiser" | "adventure" | "scooter">("all");
@@ -294,12 +310,12 @@ I'd like to book a rental slot for the "${bikeName}" at your Laxman Jhula store 
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-300">
-            <a href="#bento-dashboard" className="hover:text-brand-orange transition-colors">Explorer</a>
-            <a href="#fleet" className="hover:text-brand-orange transition-colors">Bikes Fleet</a>
-            <a href="#services" className="hover:text-brand-orange transition-colors">Adventures</a>
-            <a href="#calculator" className="hover:text-brand-orange transition-colors">Estimator</a>
-            <a href="#why-choose" className="hover:text-brand-orange transition-colors">Perks</a>
-            <a href="#faqs" className="hover:text-brand-orange transition-colors">FAQs</a>
+            <a href="#bento-dashboard" onClick={(e) => handleScrollTo(e, "bento-dashboard")} className="hover:text-brand-orange transition-colors">Explorer</a>
+            <a href="#fleet" onClick={(e) => handleScrollTo(e, "fleet")} className="hover:text-brand-orange transition-colors">Bikes Fleet</a>
+            <a href="#services" onClick={(e) => handleScrollTo(e, "services")} className="hover:text-brand-orange transition-colors">Adventures</a>
+            <a href="#calculator" onClick={(e) => handleScrollTo(e, "calculator")} className="hover:text-brand-orange transition-colors">Estimator</a>
+            <a href="#why-choose" onClick={(e) => handleScrollTo(e, "why-choose")} className="hover:text-brand-orange transition-colors">Perks</a>
+            <a href="#faqs" onClick={(e) => handleScrollTo(e, "faqs")} className="hover:text-brand-orange transition-colors">FAQs</a>
           </nav>
 
           {/* Live Contact Controls */}
@@ -344,12 +360,12 @@ I'd like to book a rental slot for the "${bikeName}" at your Laxman Jhula store 
               className="md:hidden bg-slate-950 border-t border-slate-900 overflow-hidden"
             >
               <nav className="flex flex-col p-6 gap-4 text-sm font-semibold uppercase tracking-wider">
-                <a href="#bento-dashboard" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Explorer</a>
-                <a href="#fleet" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Bikes Fleet</a>
-                <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Adventures</a>
-                <a href="#calculator" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Estimator</a>
-                <a href="#why-choose" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Perks</a>
-                <a href="#faqs" onClick={() => setIsMobileMenuOpen(false)} className="py-2 text-slate-300 hover:text-brand-orange">FAQs</a>
+                <a href="#bento-dashboard" onClick={(e) => handleScrollTo(e, "bento-dashboard")} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Explorer</a>
+                <a href="#fleet" onClick={(e) => handleScrollTo(e, "fleet")} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Bikes Fleet</a>
+                <a href="#services" onClick={(e) => handleScrollTo(e, "services")} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Adventures</a>
+                <a href="#calculator" onClick={(e) => handleScrollTo(e, "calculator")} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Estimator</a>
+                <a href="#why-choose" onClick={(e) => handleScrollTo(e, "why-choose")} className="py-2 border-b border-slate-900 text-slate-300 hover:text-brand-orange">Perks</a>
+                <a href="#faqs" onClick={(e) => handleScrollTo(e, "faqs")} className="py-2 text-slate-300 hover:text-brand-orange">FAQs</a>
                 
                 <div className="flex flex-col gap-3 pt-4 border-t border-slate-900">
                   <a 
